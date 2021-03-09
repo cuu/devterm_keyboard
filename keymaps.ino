@@ -26,8 +26,8 @@ B16 mouse right
 */
 #define _PRINT_KEY KEY_PRNT_SCRN
 #define _PAUSE_KEY KEY_PAUSE
-#define _VOLUME_M KEY_VOLUME_UP
-#define _VOLUME_P KEY_VOLUME_DOWN
+#define _VOLUME_M KEY_VOLUME_DOWN
+#define _VOLUME_P KEY_VOLUME_UP
 #define _LEFT_SHIFT_KEY KEY_LEFT_SHIFT 
 #define _LEFT_CTRL_KEY  KEY_LEFT_CTRL
 #define _CMD_KEY        KEY_RIGHT_GUI 
@@ -51,33 +51,60 @@ enum SKEYS {
 
 };
 
-#define DEF_LAYER 0x00
-#define SHI_LAYER 0x01
-#define FN_LAYER  0x02
+#define DEF_LAYER   0x00
+#define SHI_LAYER   0x01
+#define CAPS_LAYER  0x02
+#define FN_LAYER    0x03
 
+/*
+ * keyboard_maps
+ * M11 - M18
+ * M21 - M28
+ * M31 - M38
+ * M41 - M48
+ * M51 - M58
+ * M61 - M68
+ * M71 - M78
+ * M81 - M88
+ */
 const uint16_t keyboard_maps[][MATRIX_ROWS][MATRIX_COLS] = {
+  
+  [DEF_LAYER] = { _SELECT_KEY,_START_KEY,_VOLUME_M,'`','[',']','-','=', \
+    '1','2','3','4','5','6','7','8',\  
+    '9','0',KEY_ESC,KEY_TAB,KEY_UP_ARROW,KEY_DOWN_ARROW,KEY_LEFT_ARROW,KEY_RIGHT_ARROW, \
+    'q','w','e','r','t','y','u','i', \ 
+    'o','p','a','s','d','f','g','h',\  
+    'j','k','l','z','x','c','v','b', \
+    'n','m',',','.','/','\\',';','\'', \
+    KEY_BACKSPACE,KEY_RETURN,KEY_RIGHT_ALT,KEY_RIGHT_CTRL,KEY_RIGHT_SHIFT,' ',EMP,EMP},
+ 
+   [SHI_LAYER] = {_SELECT_KEY,_START_KEY,_VOLUME_P,'~','{','}','_','+', \ 
+    '!','@','#','$','%','^','&','*',\  
+    '(',')',KEY_ESC,KEY_TAB,KEY_PAGE_UP,KEY_PAGE_DOWN,KEY_HOME,KEY_END, \ 
+    'Q','W','E','R','T','Y','U','I', \ 
+    'O','P','A','S','D','F','G','H',\  
+    'J','K','L','Z','X','C','V','B', \ 
+    'N','M','<','>','?','|',':','"', \ 
+    KEY_BACKSPACE,KEY_RETURN,KEY_RIGHT_ALT,KEY_RIGHT_CTRL,KEY_RIGHT_SHIFT,' ',EMP,EMP},
+  
+  [CAPS_LAYER] = { _SELECT_KEY,_START_KEY,_VOLUME_M,'`','[',']','-','=', \ 
+    '1','2','3','4','5','6','7','8',\  
+    '9','0',KEY_ESC,KEY_TAB,KEY_UP_ARROW,KEY_DOWN_ARROW,KEY_LEFT_ARROW,KEY_RIGHT_ARROW, \ 
+    'Q','W','E','R','T','Y','U','I', \ 
+    'O','P','A','S','D','F','G','H',\  
+    'J','K','L','Z','X','C','V','B', \ 
+    'N','M',',','.','/','\\',';','\'', \ 
+    KEY_BACKSPACE,KEY_RETURN,KEY_RIGHT_ALT,KEY_RIGHT_CTRL,KEY_RIGHT_SHIFT,' ',EMP,EMP},
 
-  [0] = { _SELECT_KEY,_START_KEY,_VOLUME_M,'`','[',']','-','=', \
-    '1','2','3','4','5','6','7','8','9','0', \
-  KEY_ESC,'q','w','e','r','t','y','u','i','o','p','\\',KEY_BACKSPACE,\
-  KEY_TAB,'a','s','d','f','g','h','j','k','l',';','\'', KEY_RETURN ,\
-  'z','x','c','v','b','n','m',',','.','/',  KEY_UP_ARROW ,KEY_RIGHT_SHIFT, \
-  ' ',KEY_RIGHT_ALT,KEY_RIGHT_CTRL,KEY_LEFT_ARROW,KEY_DOWN_ARROW,KEY_RIGHT_ARROW },
-
-  [1] = { _SELECT_KEY,_START_KEY,_VOLUME_P,'~','{','}','_','+', \
-    '!','@','#','$','%','^','&','*','(',')', \
-  KEY_ESC,'Q','W','E','R','T','Y','U','I','O','P','|',KEY_BACKSPACE,\
-  KEY_TAB,'A','S','D','F','G','H','J','K','L',':','"', KEY_RETURN ,\
-  'Z','X','C','V','B','N','M','<','>','?',  KEY_PAGE_UP ,KEY_RIGHT_SHIFT, \
-  ' ',KEY_RIGHT_ALT,KEY_RIGHT_CTRL,KEY_HOME,KEY_PAGE_DOWN,KEY_END },
-
-  [2] = { _PRINT_KEY,_PAUSE_KEY,EMP,EMP,EMP,EMP,KEY_F11,KEY_F12, \
-    KEY_F1,KEY_F2,KEY_F3,KEY_F4,KEY_F5,KEY_F6,KEY_F7,KEY_F8,KEY_F9,KEY_F10, \
-  EMP,EMP,EMP,EMP,EMP,EMP,EMP,EMP,EMP,EMP,EMP,EMP,KEY_DELETE,\
-  KEY_CAPS_LOCK,EMP,EMP,EMP,EMP,EMP,EMP,EMP,EMP,EMP,EMP,EMP, EMP ,\
-  EMP,EMP,EMP,EMP,EMP,EMP,EMP,EMP,EMP,EMP,  EMP ,EMP, \
-  EMP,EMP,EMP,EMP,EMP,EMP },  
-
+  [FN_LAYER] = { _PRINT_KEY,_PAUSE_KEY,_VOLUME_M,'`','[',']',KEY_F11,KEY_F12, \ 
+    KEY_F1,KEY_F2,KEY_F3,KEY_F4,KEY_F5,KEY_F6,KEY_F7,KEY_F8,\  
+    KEY_F9,KEY_F10,KEY_ESC,KEY_CAPS_LOCK,KEY_UP_ARROW,KEY_DOWN_ARROW,KEY_LEFT_ARROW,KEY_RIGHT_ARROW, \ 
+    'q','w','e','r','t','y','u',KEY_INSERT, \ 
+    'o','p','a','s','d','f','g','h',\  
+    'j','k','l','z','x','c','v','b', \ 
+    'n','m',',','.','/','\\',';','\'', \ 
+    KEY_DELETE,KEY_RETURN,KEY_RIGHT_ALT,KEY_RIGHT_CTRL,KEY_RIGHT_SHIFT,' ',EMP,EMP}
+    
   
   
 };
@@ -112,6 +139,23 @@ void keyboard_action(DEVTERM*dv,uint8_t row,uint8_t col,uint8_t mode) {
       dv->Keyboard->release(k);
     }
     break;
+
+    case  KEY_CAPS_LOCK:
+    if(mode == KEY_PRESSED) {
+      dv->Keyboard_state.layer = CAPS_LAYER;
+      dv->Keyboard->press(k);
+      
+    }else if(mode == KEY_RELEASED) {
+      dv->Keyboard->release(k);
+      if(dv->Keyboard_state.caps_lock == 0) {
+        dv->Keyboard_state.caps_lock = 1;
+      }else{
+        dv->Keyboard_state.caps_lock = 0;
+        dv->Keyboard_state.layer = DEF_LAYER;
+      }
+    }
+    
+    break;   
     case _SELECT_KEY:
       dv->Joystick->button(5,mode);
     break;
@@ -153,7 +197,7 @@ void keypad_action(DEVTERM*dv,uint8_t col,uint8_t mode) {
         dv->Keyboard_state.layer = DEF_LAYER;
         dv->Keyboard->release(k);
       }
-    break;
+    break;    
     case  _FN_KEY:
       if(mode == KEY_PRESSED){
         dv->Keyboard_state.layer = FN_LAYER;
@@ -161,6 +205,7 @@ void keypad_action(DEVTERM*dv,uint8_t col,uint8_t mode) {
         dv->Keyboard_state.layer = DEF_LAYER;
       }
     break;
+    
     case _JOYSTICK_UP:
       dv->Joystick->Y(0);
     break;

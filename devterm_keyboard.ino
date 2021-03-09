@@ -18,6 +18,7 @@ void setup() {
   
   dev_term.Keyboard_state.shift = 0;
   dev_term.Keyboard_state.layer = 0;
+  dev_term.Keyboard_state.caps_lock = 0;
   
   HID.begin(HID_KEYBOARD_MOUSE_JOYSTICK);
 

@@ -8,6 +8,7 @@ typedef struct keyboard_state{
 
   uint8_t layer;
   uint8_t shift;
+  uint8_t caps_lock;
   
 }KEYBOARD_STATE;
 

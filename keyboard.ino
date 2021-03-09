@@ -14,7 +14,6 @@ static uint8_t matrix_debouncing[MATRIX_COLS];
 static uint8_t matrix_prev[MATRIX_ROWS];
 
 static int8_t jack_idx=-1;
-static int8_t jack_std=-1;
 static uint16_t jack_time = 0;
 
 
@@ -148,33 +147,26 @@ void keyboard_task(DEVTERM*dv)
         if( ( (matrix_prev[r] & col_mask) == 0) && ( (matrix_row & col_mask) > 0) ) {
           matrix_press(dv,r,c);
         }
+        
         if( ( (matrix_prev[r] & col_mask) > 0) && ( (matrix_row & col_mask) == 0)  ) {
 
           matrix_release(dv,r,c);
         }
-        if( ( (matrix_prev[r] & col_mask) > 0) && ( (matrix_row & col_mask) > 0)  ) {
+        
+        if( ( (matrix_prev[r] & col_mask) > 0) && ( (matrix_row & col_mask) > 0)  ) {//same key
 
           if( jack_idx == -1){
             jack_idx = r*MATRIX_ROWS+c;
           }else{
-
+            
             if(jack_idx != r*MATRIX_ROWS+c) {
               jack_time = 0;
               jack_idx = r*MATRIX_ROWS+c;
-              jack_std = -1;
             }else{              
-              if(jack_std == -1){
-                jack_time +=1;
-                if( jack_time % (DEBOUNCE*700) == 0){
-                  jack_std = 1;
-                  jack_time = 0;
-                }
-              }else{
-                jack_time +=1;
-                if( jack_time % (DEBOUNCE*250) == 0){
-                  matrix_press(dv,r,c);
-                }
-              }               
+              jack_time +=1;
+              if( jack_time % (DEBOUNCE*20) == 0){
+                matrix_press(dv,r,c);
+              } 
             }
           }
         }
