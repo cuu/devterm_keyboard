@@ -61,7 +61,7 @@ uint8_t matrix_scan(void) {
     digitalWrite(matrix_cols[col],HIGH);
   
 
-    delayMicroseconds(25);
+    delayMicroseconds(20);
 
     data =(
           ( read_io(matrix_rows[0]) << 0 )  |

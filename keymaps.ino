@@ -103,9 +103,11 @@ void keyboard_action(DEVTERM*dv,uint8_t row,uint8_t col,uint8_t mode) {
     case _LEFT_SHIFT_KEY:
     case  KEY_RIGHT_SHIFT:
     if(mode == KEY_PRESSED) {
+      Serial.println("into shift layer");
       dv->Keyboard_state.layer = SHI_LAYER;
       dv->Keyboard->press(k);
     }else if(mode == KEY_RELEASED) {
+      Serial.println("leave shift layer");
       dv->Keyboard_state.layer = DEF_LAYER;
       dv->Keyboard->release(k);
     }

@@ -1,5 +1,6 @@
 #include "keyboard.h"
 #include "keys.h"
+#include "trackball.h"
 #include "devterm.h"
 
 #include <USBComposite.h>
@@ -12,6 +13,9 @@ void setup() {
   USBComposite.setProductString("DevTerm");
 
   dev_term.Keyboard = new HIDKeyboard(HID);
+  dev_term.Joystick = new HIDJoystick(HID);
+  dev_term.Mouse    = new HIDMouse(HID);
+  
   dev_term.Keyboard_state.shift = 0;
   dev_term.Keyboard_state.layer = 0;
   
@@ -22,6 +26,7 @@ void setup() {
   Serial.begin(115200);
   keyboard_init();
   keys_init();
+  trackball_init();
   
   Serial.println("setup done");
 /*
@@ -43,8 +48,9 @@ after combine with USBComposite , M21-M28 showed up in boot time
 
 void loop() {
 
+  trackball_task(&dev_term);
   keys_task(&dev_term); //keys above keyboard
   keyboard_task(&dev_term);
-
+  
 
 }
