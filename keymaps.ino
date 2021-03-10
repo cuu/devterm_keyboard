@@ -48,6 +48,7 @@ enum SKEYS {
   _MOUSE_LEFT,    // Mouse.press(1)
   _MOUSE_MID,     // Mouse.press(2)
   _MOUSE_RIGHT,   // Mouse.press(3)
+  
 
 };
 
@@ -250,6 +251,17 @@ void keypad_action(DEVTERM*dv,uint8_t col,uint8_t mode) {
         dv->Mouse->press(3);
       }else if(mode == KEY_RELEASED){
         dv->Mouse->release(3);
+      }
+    break;
+    
+    //_LEFT_CTRL_KEY,_CMD_KEY , _LEFT_ALT    
+    case _LEFT_CTRL_KEY:
+    case _CMD_KEY:
+    case _LEFT_ALT:
+      if(mode == KEY_PRESSED){
+        dv->Keyboard->press(k);
+      }else {
+        dv->Keyboard->release(k);
       }
     break;
     
