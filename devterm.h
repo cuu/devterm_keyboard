@@ -18,7 +18,11 @@ class DEVTERM {
     HIDMouse *Mouse; 
     HIDJoystick *Joystick;
     KEYBOARD_STATE Keyboard_state;
-  
+    USBCompositeSerial *_Serial;
+    //if not to use USBCompositeSerial,then use default Serial
+    //**Serial and USBCompositeSerial can not use together, otherwise the keyboard firmware uploading will be dead**
+    //and you will need to find a way out to flash the stm32duino bootloader once again
+    //USBSerial *_Serial;//_Serial = &Serial;
 };
 
 

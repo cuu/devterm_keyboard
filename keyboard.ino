@@ -112,7 +112,7 @@ void matrix_press(DEVTERM*dv,uint8_t row,uint8_t col) {
 
   if(matrix_is_on(row,col) == true ){
     sprintf(buff,"%d %d M%d pressed\n",row,col,(row+1)*10+col+1);
-    Serial.print(buff);
+    dv->_Serial->print(buff);
     keyboard_action(dv,row,col,KEY_PRESSED);
   }
   
@@ -124,7 +124,7 @@ void matrix_release(DEVTERM*dv,uint8_t row,uint8_t col) {
   
   if(matrix_is_on(row,col) == false ){
     sprintf(buff,"%d %d M%d released\n",row,col,(row+1)*10+col+1);
-    Serial.print(buff);
+    dv->_Serial->print(buff);
     keyboard_action(dv,row,col,KEY_RELEASED);
         
   }

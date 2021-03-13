@@ -49,13 +49,13 @@ uint8_t scan_keys(){
 }
 
 
-void print_keys(void) {
+void print_keys(DEVTERM*dv) {
   char buff[128];
 
   for (int i = 0; i < KEYS_NUM; i++) {
     if( keys & (1<< i) ){
       sprintf(buff,"B%d pressed\n",i+1);
-      Serial.print(buff);
+      dv->_Serial->print(buff);
     }
   }
   

@@ -20,16 +20,18 @@ void setup() {
   dev_term.Keyboard_state.layer = 0;
   dev_term.Keyboard_state.caps_lock = 0;
   
-  HID.begin(HID_KEYBOARD_MOUSE_JOYSTICK);
+  dev_term._Serial = new  USBCompositeSerial;
+  
+  HID.begin(*dev_term._Serial,HID_KEYBOARD_MOUSE_JOYSTICK);
 
   while(!USBComposite);//wait until usb port been plugged in to PC
   
-  Serial.begin(115200);
+
   keyboard_init();
   keys_init();
   trackball_init();
   
-  Serial.println("setup done");
+  dev_term._Serial->println("setup done");
 /*
 
 11:43:12.146 -> setup done
