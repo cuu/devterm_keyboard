@@ -7,6 +7,7 @@ by stm32duino version 2021.2.22
 
   GENERIC STM32F103R series
 
-  Upload method: serial
-
-  No bootloader requires
+  gd32f1_generic_boot20_pc13.bin
+  generic_boot20_pc13.bin
+  
+  
