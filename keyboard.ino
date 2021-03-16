@@ -179,7 +179,7 @@ void keyboard_task(DEVTERM*dv)
 }
 
 
-void keyboard_init(){
+void keyboard_init(DEVTERM*){
   matrix_init();
  
 }

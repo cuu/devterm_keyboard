@@ -60,7 +60,7 @@ class Direction {
     unsigned long last_action_times[2];
 };
 
-void trackball_init();
+void trackball_init(DEVTERM*);
 void trackball_task(DEVTERM*);
 
 

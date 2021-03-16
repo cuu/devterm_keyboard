@@ -20,7 +20,7 @@
 
 
 void keys_task(DEVTERM*);
-void keys_init(void);
+void keys_init(DEVTERM*);
 
 
 

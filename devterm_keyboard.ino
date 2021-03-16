@@ -27,9 +27,9 @@ void setup() {
   while(!USBComposite);//wait until usb port been plugged in to PC
   
 
-  keyboard_init();
-  keys_init();
-  trackball_init();
+  keyboard_init(&dev_term);
+  keys_init(&dev_term);
+  trackball_init(&dev_term);
   
   dev_term._Serial->println("setup done");
 /*

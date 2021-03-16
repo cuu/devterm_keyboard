@@ -37,7 +37,7 @@ uint8_t matrix_get_row(uint8_t row) ;
 
 
 void keyboard_task(DEVTERM*);
-void keyboard_init();
+void keyboard_init(DEVTERM*);
 
 
 #define KEY_PRESSED 1

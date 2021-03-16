@@ -48,6 +48,6 @@ void trackball_task(DEVTERM*dv) {
 }
 
 
-void trackball_init(){
+void trackball_init(DEVTERM*){
   pinMode(BTN_PIN,INPUT);
 }

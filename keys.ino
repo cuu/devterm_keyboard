@@ -11,6 +11,9 @@ static uint16_t keys_debouncing;
 static uint16_t keys_prev;
 
 
+static int8_t keys_jack_idx=-1;
+static uint16_t keys_jack_time = 0;
+
 void init_keys(){
   int i;
   for(i=0;i<KEYS_NUM;i++) {
@@ -76,17 +79,37 @@ void keys_task(DEVTERM*dv){
     }
     if( (keys_prev & _mask) > 0 && (keys & _mask) == 0){
       keypad_action(dv,c,KEY_RELEASED);
-    }    
+    }
     
+    if( (keys_prev & _mask) > 0 && (keys & _mask) > 0) { ////same key
+
+      if( c >= 0 && c < 4) {// only allow B1-B4 
+        if( keys_jack_idx == -1){
+          keys_jack_idx = c;
+        }else{
+          if(keys_jack_idx != c) {
+            keys_jack_time = 0;
+            keys_jack_idx = c;
+          }else{              
+            keys_jack_time +=1;
+            if( keys_jack_time % (KEY_DEBOUNCE*20) == 0){
+              keypad_action(dv,c,KEY_PRESSED);
+            } 
+          }
+        }
+      }
+    }
   }
 
   keys_prev = keys;
  
 }
 
-void keys_init(void){
+void keys_init(DEVTERM*dv){
 
   init_keys();
-
-   
+  //center the position
+  dv->Joystick->X(511);
+  dv->Joystick->Y(511);
+  
 }
