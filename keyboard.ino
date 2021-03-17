@@ -155,6 +155,7 @@ void keyboard_task(DEVTERM*dv)
         
         if( ( (matrix_prev[r] & col_mask) > 0) && ( (matrix_row & col_mask) > 0)  ) {//same key
 
+          
           if( jack_idx == -1){
             jack_idx = r*MATRIX_ROWS+c;
           }else{
@@ -165,7 +166,9 @@ void keyboard_task(DEVTERM*dv)
             }else{              
               jack_time +=1;
               if( jack_time % (DEBOUNCE*20) == 0){
-                matrix_press(dv,r,c);
+                if(jack_idx > 1){//skip select,start button 
+                  matrix_press(dv,r,c);
+                }
               } 
             }
           }

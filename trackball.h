@@ -11,10 +11,10 @@
 #define EXPONENTIAL_BASE      1.2
 
 #define BTN_PIN               KEY0
-#define RIGHT_PIN             HO1
-#define LEFT_PIN              HO2
-#define DOWN_PIN              HO3
-#define UP_PIN                HO4
+#define RIGHT_PIN             HO3
+#define LEFT_PIN              HO1
+#define DOWN_PIN              HO4
+#define UP_PIN                HO2
 
 
 
