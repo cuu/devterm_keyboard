@@ -32,20 +32,7 @@ void setup() {
   trackball_init(&dev_term);
   
   dev_term._Serial->println("setup done");
-/*
-
-11:43:12.146 -> setup done
-11:43:12.146 -> 1 0 M21
-11:43:12.146 -> 1 1 M22
-11:43:12.146 -> 1 2 M23
-11:43:12.146 -> 1 3 M24
-11:43:12.146 -> 1 4 M25
-11:43:12.146 -> 1 5 M26
-11:43:12.146 -> 1 6 M27
-11:43:12.146 -> 1 7 M28
-after combine with USBComposite , M21-M28 showed up in boot time
-
- */
+  
   //delay(3000);
 }
 
